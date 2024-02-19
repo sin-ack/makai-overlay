@@ -27,8 +27,6 @@ fi
 LICENSE="Apache-2.0"
 SLOT="0"
 
-IUSE=""
-
 RDEPEND="
 	sys-libs/libnvidia-container
 "
@@ -49,7 +47,6 @@ src_unpack() {
 	# "error while loading shared libraries: unexpected PLT reloc type 0x00"
 	GOFLAGS="${GOFLAGS//-buildmode=pie/}"
 }
-
 
 src_compile() {
 	emake binaries

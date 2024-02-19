@@ -1,0 +1,25 @@
+#!/sbin/openrc-run
+# Copyright 1999-2024 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+description="CodeMeter WebAdmin"
+command="/usr/sbin/CmWebAdmin"
+command_args=""
+command_user="daemon:daemon"
+command_background=true
+extra_started_commands="reload"
+pidfile="/run/${RC_SVCNAME}.pid"
+
+depend() {
+	need codemeter
+}
+
+start_pre() {
+	checkpath -d -m 0755 -o daemon:daemon /var/lib/CodeMeter/WebAdmin
+}
+
+reload() {
+	ebegin "Reloading ${RC_SVCNAME}"
+	start-stop-daemon --signal USR1 --pidfile "${pidfile}"
+	return 0
+}

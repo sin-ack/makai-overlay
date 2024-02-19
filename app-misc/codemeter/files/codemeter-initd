@@ -1,0 +1,34 @@
+#!/sbin/openrc-run
+# Copyright 1999-2024 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+description="CodeMeter Server"
+command="/usr/sbin/CodeMeterLin"
+command_args=""
+command_user="daemon:daemon"
+extra_started_commands="reload"
+
+# The CodeMeter server daemonizes itself, but doesn't write a PID file
+# and doesn't have an option to run in the foreground. So, the best we
+# can do is try to match the process name when stopping it.
+procname="CodeMeterLin"
+
+depend() {
+	use net
+	after logger
+}
+
+start_pre() {
+	for dir in Backup CmAct CmCloud NamedUser; do
+		checkpath -d -m 0755 -o daemon:daemon /var/lib/CodeMeter/$dir
+	done
+
+	checkpath -d -m 0755 -o daemon:daemon /var/log/CodeMeter
+	checkpath -f -m 0644 -o daemon:daemon /etc/wibu/CodeMeter/Server.ini
+}
+
+reload() {
+	ebegin "Reloading ${RC_SVCNAME}"
+	start-stop-daemon --signal USR1 --name "${procname}"
+	return 0
+}

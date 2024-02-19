@@ -40,12 +40,16 @@ BDEPEND="
 	dev-build/make
 "
 
-PATCHES=(
-	# This corresponds to merge commit 5d7ee25 on NVIDIA's repo,
-	# which seems to fix the "unexpected PLT reloc type 0x00"
-	# error when PIE is enabled.
-	"${FILESDIR}"/nvidia-container-toolkit-1.14.5-fix-buildmode-pie.patch
-)
+src_unpack() {
+	default
+	go-module_src_unpack
+
+	# When -buildmode=pie is enabled on nvidia-container-toolkit
+	# versions prior to 1.15.0, the following error is observed:
+	# "error while loading shared libraries: unexpected PLT reloc type 0x00"
+	GOFLAGS="${GOFLAGS//-buildmode=pie/}"
+}
+
 
 src_compile() {
 	emake binaries

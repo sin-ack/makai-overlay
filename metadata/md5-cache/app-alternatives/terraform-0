@@ -1,0 +1,13 @@
+DEFINED_PHASES=install
+DESCRIPTION=Terraform symlink
+EAPI=8
+HOMEPAGE=https://wiki.gentoo.org/wiki/Project:Base/Alternatives
+INHERIT=app-alternatives
+IUSE=+tofu hashicorp-terraform
+KEYWORDS=~amd64 ~arm64 ~riscv
+LICENSE=CC0-1.0
+RDEPEND=!<app-admin/terraform-1.7.2-r1 !<app-admin/opentofu-1.6.1-r1 tofu? ( >=app-admin/opentofu-1.6.1-r1 ) hashicorp-terraform? ( >=app-admin/terraform-1.7.2-r1 )
+REQUIRED_USE=^^ ( tofu hashicorp-terraform )
+SLOT=0
+_eclasses_=app-alternatives	7e9cb9b9eda5c46d0e04f3c992226ff2
+_md5_=08922ba2e472df4668cac3aebaca659e

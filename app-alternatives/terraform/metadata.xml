@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sin-ack@protonmail.com</email>
+		<name>sin-ack</name>
+	</maintainer>
+	<use>
+		<flag name="hashicorp-terraform">
+			Symlink to <pkg>app-admin/terraform</pkg>
+		</flag>
+		<flag name="tofu">
+			Symlink to <pkg>app-admin/opentofu</pkg>
+		</flag>
+	</use>
+</pkgmetadata>

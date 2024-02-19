@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sin-ack@protonmail.com</email>
+		<name>sin-ack</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">lbonn/rofi</remote-id>
+	</upstream>
+	<use>
+		<flag name="drun">Launch applications from .desktop files</flag>
+		<flag name="windowmode">Experimental 'window mode' for KWin</flag>
+	</use>
+</pkgmetadata>

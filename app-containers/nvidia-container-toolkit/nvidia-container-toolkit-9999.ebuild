@@ -41,6 +41,13 @@ BDEPEND="
 	dev-build/make
 "
 
+PATCHES=(
+	# NVIDIA's tools like to leave symbols defined and resolve them only when the current
+	# GPU supports a specific feature, which breaks -z now. This started breaking with Gentoo 23.0.
+	# https://github.com/NVIDIA/go-nvml/issues/18#issuecomment-809278984
+	"${FILESDIR}/z-lazy.patch"
+)
+
 src_compile() {
 	emake binaries
 }
